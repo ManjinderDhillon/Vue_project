@@ -1,5 +1,6 @@
 <template>
-    
+   
+    <ul>
      <h2>Name: {{name}}{{fav   ? '(favorite)' : ''}}</h2>
      <button @click="toggleDetails" > {{ detailsAreVisible ? "Hide" : "Show" }}Details</button>
      <button @click="toggleFav" >toggleFavorite</button>
@@ -11,11 +12,14 @@
          <strong>Email: {{email}}</strong>
        </li>
      </ul>
+    </ul>
    
  </template>
  
  <script setup>
+ 
  import { ref , computed} from 'vue';
+ const emit = defineEmits(['toggleFavorite'])
  const props = defineProps({
   id:{type:String,required:true},
   name:{type:String,required:true},
@@ -27,7 +31,7 @@
  const detailsAreVisible = ref(false);
  const fav =  ref(props.favorite)
 
- const emit = defineEmits(['toggleFavorite'])
+
  
 
 

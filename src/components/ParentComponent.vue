@@ -1,4 +1,5 @@
 <template>
+  <NewFriend @addContact="addNewFriend" />
   <ChildComponent
     v-for="friend in friends"
     :key="friend.index"
@@ -13,6 +14,7 @@
 <script setup>
 import { ref } from "vue";
 import ChildComponent from "./ChildComponent.vue";
+import NewFriend from './NewFriend.vue';
 
 const friends = ref([
   {
@@ -33,4 +35,14 @@ const friends = ref([
 const toggle = (friendId) => {
     alert(friendId) 
 };
+const addNewFriend = (Name,Phone,Email) => {
+  const UserData = {
+    id: new Date().toISOString(),
+    name : Name,
+    phone:Phone,
+    email:Email,
+    favorite:false
+  }
+  friends.value.push(UserData)
+}
 </script>
