@@ -1,41 +1,42 @@
 <template>
-   <li v-for="friend in friends" >
-    <h2>Name: {{friend.name}}</h2>
-    <button @click="toggleDetails" > {{ detailsAreVisible ? "Hide" : "Show" }}Details</button>
-    <ul v-if="detailsAreVisible" >
-      <li>
-        <strong>Phone: {{friend.phone}}</strong>
-      </li>
-      <li>
-        <strong>Email: {{friend.email}}</strong>
-      </li>
-    </ul>
-  </li>
-</template>
+    
+     <h2>Name: {{name}}{{fav   ? '(favorite)' : ''}}</h2>
+     <button @click="toggleDetails" > {{ detailsAreVisible ? "Hide" : "Show" }}Details</button>
+     <button @click="toggleFav" >toggleFavorite</button>
+     <ul v-if="detailsAreVisible" >
+       <li>
+         <strong>Phone: {{phone}}</strong>
+       </li>
+       <li>
+         <strong>Email: {{email}}</strong>
+       </li>
+     </ul>
+   
+ </template>
+ 
+ <script setup>
+ import { ref , computed} from 'vue';
+ const props = defineProps({
+  id:{type:String,required:true},
+  name:{type:String,required:true},
+  phone:{type:String,required:true},
+  email:{type:String,required:true},
+  favorite :{type:Boolean,required:false}
 
-<script setup>
-import { ref } from 'vue';
+})
+ const detailsAreVisible = ref(false);
+ const fav =  ref(props.favorite)
 
-const detailsAreVisible = ref(false);
+ const emit = defineEmits(['toggleFavorite'])
+ 
 
-const friends = ref([
-  {
-    id: "Aman",
-    name: "AmanPreet",
-    phone: "5566778800",
-    email: "Aman@gmail.com",
-    isFavorite: true,
-  },
-  {
-    id: "Raman",
-    name: "RmanPreet",
-    phone: "9988776655",
-    email: "Rman@gmail.com",
-    isFavorite: false,
-  },
-]);
-console.log(friends);
-const toggleDetails = () => {
-  detailsAreVisible.value = !detailsAreVisible.value;
-};
-</script>
+
+const toggleFav=()=> {
+emit('toggleFavorite',props.id)
+ 
+}
+ const toggleDetails = () => {
+   detailsAreVisible.value = !detailsAreVisible.value;
+ };
+
+ </script>
