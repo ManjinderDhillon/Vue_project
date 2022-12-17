@@ -2,13 +2,14 @@
   <NewFriend @addContact="addNewFriend" />
   <ChildComponent
     v-for="friend in friends"
-    :key="friend.index"
+    :key="friend.id"
     :id="friend.id"
     :name="friend.name"
     :phone="friend.phone "
     :email="friend.email "
     :favorite="true"
     @toggleFavorite="toggle"
+    @delete="deleteContact"
   />
 </template>
 <script setup>
@@ -37,7 +38,7 @@ const toggle = (friendId) => {
 };
 const addNewFriend = (Name,Phone,Email) => {
   const UserData = {
-    id: new Date().toISOString(),
+    id: '',
     name : Name,
     phone:Phone,
     email:Email,
@@ -45,4 +46,8 @@ const addNewFriend = (Name,Phone,Email) => {
   }
   friends.value.push(UserData)
 }
+const deleteContact = (friendId) => {
+ friends.value = friends.value.filter((friend)=>friend.id !== friendId)
+}
+
 </script>

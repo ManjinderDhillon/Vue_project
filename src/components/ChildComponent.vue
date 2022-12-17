@@ -13,15 +13,16 @@
        </li>
      </ul>
     </ul>
+    <button @click="emit('delete',id)" >Delete</button>
    
  </template>
  
  <script setup>
  
  import { ref , computed} from 'vue';
- const emit = defineEmits(['toggleFavorite'])
+ const emit = defineEmits(['toggleFavorite','delete'])
  const props = defineProps({
-  id:{type:String,required:true},
+  id:{type:String,required:false},
   name:{type:String,required:true},
   phone:{type:String,required:true},
   email:{type:String,required:true},
