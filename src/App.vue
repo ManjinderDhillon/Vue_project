@@ -1,10 +1,10 @@
 <template>
-  <main>
+  
     <!-- <MainApp/> -->
     <!-- <ParentComponent/> -->
 <!-- <SlotComponent/> -->
 <MainGoals/>
-  </main>
+  
 </template>
 
 <script setup>
