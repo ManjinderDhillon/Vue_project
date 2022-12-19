@@ -1,18 +1,18 @@
 <template>
-<SlotTwo>
+ <SlotTwo>
     <template v-slot:header >
-        <h1>Slots Info</h1>
+        <h2>Slots</h2>
     </template>
-    <template v-slot:info >
-<p>Slots Are the Advanced part of VueJs</p>
+  </SlotTwo>
+
+  <SlotTwo>
+    <template #default="slotsProp">
+      <h2>{{ slotsProp.item }}</h2>
     </template>
-    <template v-slot:btn >
-        <button>Submit</button>
-    </template>
-</SlotTwo>
+  </SlotTwo>
+ 
 </template>
 
-<script setup >
-import SlotTwo from './SlotTwo.vue';
-
+<script setup>
+import SlotTwo from "./SlotTwo.vue";
 </script>
